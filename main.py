@@ -71,12 +71,19 @@ def update():
     # Close connection
     conn.close()
 
+    # Close the editor window
+    editor.destroy()
+
+    # Clear deletebox
+    delete_box.delete(0, END)
+
 # Create the edit function
 def edit():
+    global editor
     editor = Tk()
     editor.title('Update a record')
     editor.configure(background='white')
-    editor.geometry("400x400")
+    editor.geometry("400x300")
 
     # Create and/or connect to a database
     conn = sqlite3.connect("contacts.db")
@@ -143,6 +150,7 @@ def edit():
     conn.commit()
     # Close connection
     conn.close()
+
 
 # Create a delete function
 def delete():
